@@ -27,4 +27,4 @@ jobs:
           pip install -r blog/requirements.txt
       
       - name: Run Python Test
-        run: cd blog && python3 manage.py test
+        run: cd blog && python3 manage.py test && cd ..
