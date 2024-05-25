@@ -1,0 +1,30 @@
+name: Django Test file
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - uses: actions/checkout@v3
+      - name: Set up Python Version python3.8
+        # This is the version of the action for setting up Python, not the Python version.
+        uses: actions/setup-python@v3
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.8'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r blog/requirements.txt
+      
+      - name: Run Python Test
+        run: cd blog && python3 manage.py test
